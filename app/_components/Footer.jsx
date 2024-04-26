@@ -13,7 +13,7 @@ const Footer = () => {
 
           <a
             className="inline-flex items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-indigo-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
-            href="#"
+            href="/sign-in"
           >
             <span className="text-sm font-medium"> Let's Get Started </span>
 
