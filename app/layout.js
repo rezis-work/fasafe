@@ -12,6 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>fasafe</title>
+        <link rel="icon" href={"/money-bag.png"} />
+      </head>
       <ClerkProvider>
         <body className={outfit.className}>{children}</body>
       </ClerkProvider>
