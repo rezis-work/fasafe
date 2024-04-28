@@ -11,6 +11,9 @@ import { useRouter } from "next/navigation";
 const DashboardLayout = ({ children }) => {
   const { user } = useUser();
   const router = useRouter();
+  useEffect(() => {
+    checkUserBudgets();
+  }, [user]);
 
   const checkUserBudgets = async () => {
     const result = await db
@@ -19,14 +22,10 @@ const DashboardLayout = ({ children }) => {
       .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress));
 
     console.log(result);
-    if (result?.length === 0) {
-      router.replace("/dashboard/budgets");
-    }
+    // if (result?.length === 0) {
+    //   router.replace("/dashboard/budgets");
+    // }
   };
-
-  useEffect(() => {
-    checkUserBudgets();
-  }, [user]);
 
   return (
     <div>
