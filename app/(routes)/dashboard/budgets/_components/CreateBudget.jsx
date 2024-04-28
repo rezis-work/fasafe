@@ -18,7 +18,7 @@ import EmojiPicker from "emoji-picker-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
-const CreateBudget = () => {
+const CreateBudget = ({ refreshData }) => {
   const [emojiIcon, setEmojiIcon] = useState("😊");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
 
@@ -39,6 +39,7 @@ const CreateBudget = () => {
       .returning({ insertedId: Budgets.id });
 
     if (result) {
+      refreshData();
       toast("New Budget Created!");
       setAmount(undefined);
       setName(undefined);
