@@ -3,21 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { db } from "@/utils/dbConfig";
 import { Budgets, Expenses } from "@/utils/schema";
+import moment from "moment";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-const AddExpense = ({ budgetId, user, refreshData }) => {
-  const [name, setName] = useState();
-  const [amount, setAmount] = useState();
+const AddExpense = ({ budgetId, refreshData }) => {
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState(0);
 
   const addNewExpence = async () => {
     const result = await db
       .insert(Expenses)
       .values({
-        name: name,
+        name: name.toUpperCase(),
         amount: amount,
         budgetId: budgetId,
-        createdAt: user?.primaryEmailAddress?.emailAddress,
+        createdAt: moment().format("DD/MM/yyyy"),
       })
       .returning({ insertedId: Budgets.id });
 
