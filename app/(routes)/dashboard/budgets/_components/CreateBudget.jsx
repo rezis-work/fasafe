@@ -22,8 +22,8 @@ const CreateBudget = ({ refreshData }) => {
   const [emojiIcon, setEmojiIcon] = useState("😊");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
 
-  const [name, setName] = useState();
-  const [amount, setAmount] = useState();
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState(0);
 
   const { user } = useUser();
 
@@ -41,8 +41,8 @@ const CreateBudget = ({ refreshData }) => {
     if (result) {
       refreshData();
       toast("New Budget Created!");
-      setAmount(undefined);
-      setName(undefined);
+      setAmount(0);
+      setName("");
     }
   };
   return (

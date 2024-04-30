@@ -20,15 +20,18 @@ const ExpenseListTable = ({ expensesList, refreshData }) => {
     }
   };
   return (
-    <div className=" mt-3">
-      <div className=" grid grid-cols-4 bg-slate-200 p-2">
+    <div className=" mt-3 grid grid-cols-2 lg:block">
+      <div className=" grid grid-cols-1 lg:grid-cols-4 bg-slate-200 p-2">
         <h2 className=" font-bold">Name</h2>
         <h2 className=" font-bold">Amount</h2>
         <h2 className=" font-bold">Date</h2>
         <h2 className=" font-bold">Action</h2>
       </div>
       {expensesList.map((expence, index) => (
-        <div key={uuidv4()} className=" grid grid-cols-4 bg-slate-50 p-2">
+        <div
+          key={uuidv4()}
+          className=" grid grid-cols-1 lg:grid-cols-4 bg-slate-50 p-2"
+        >
           <h2>{expence.name}</h2>
           <h2>{expence.amount}</h2>
           <h2>{expence.createdAt}</h2>
