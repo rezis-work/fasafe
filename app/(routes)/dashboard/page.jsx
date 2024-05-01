@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import CardInfo from "./_components/CardInfo";
 import { db } from "@/utils/dbConfig";
 import { eq, getTableColumns, sql, desc } from "drizzle-orm";
 import { Budgets, Expenses } from "@/utils/schema";
-import { RecahrtsBarChart } from "recharts";
 import CustomBarChart from "./_components/CustomBarChart";
+import BudgetItem from "./budgets/_components/BudgetItem";
 
 const Dashboard = () => {
   const { user } = useUser();
@@ -36,14 +36,12 @@ const Dashboard = () => {
 
   useLayoutEffect(() => {
     function updateSize() {
-      // Update the chart width based on the window width
-      setChartWidth(window.innerWidth < 768 ? window.innerWidth - 100 : 500);
-      // You can adjust the value (32) based on your layout and padding/margin
+      setChartWidth(window.innerWidth < 768 ? window.innerWidth - 150 : 500);
     }
     window.addEventListener("resize", updateSize);
     updateSize(); // Call once initially to set the initial width
     return () => window.removeEventListener("resize", updateSize);
-  }, []);
+  }, [chartWidth]);
 
   return (
     <div className=" p-5 ">
@@ -52,11 +50,15 @@ const Dashboard = () => {
         Here's what happening with your money, Lets manage your expence
       </p>
       <CardInfo budgetList={budgetList} />
-      <div className=" grid grid-cols-1 md:grid-cols-3 mt-6 gap-2">
+      <div className=" grid grid-cols-1 xl:grid-cols-3 mt-6 gap-5">
         <div className=" col-span-2">
-          <CustomBarChart budgetlist={budgetList} width={chartWidth} />
+          <CustomBarChart budgetList={budgetList} width={chartWidth} />
         </div>
-        <div className=" col-span-1">Other content</div>
+        <div className="col-span-1 grid gap-1">
+          {budgetList.map((budget, index) => (
+            <BudgetItem key={index} budget={budget} />
+          ))}
+        </div>
       </div>
     </div>
   );

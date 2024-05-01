@@ -83,7 +83,10 @@ const ExpensesScreen = ({ params }) => {
     <div className=" p-10">
       <h2 className=" text-2xl font-bold flex flex-col gap-4 md:flex-row items-center justify-between">
         <span className=" flex items-center gap-2">
-          <ArrowLeft onClick={() => router.back()} />
+          <ArrowLeft
+            onClick={() => router.back()}
+            className=" cursor-pointer"
+          />
           My Expenses
         </span>
         <div className=" flex items-center gap-2">

@@ -11,6 +11,7 @@ const BudgetList = () => {
   const [budgetList, setBudgetList] = useState([]);
 
   const { user } = useUser();
+
   const getBudgetList = async () => {
     const result = await db
       .select({
@@ -25,7 +26,6 @@ const BudgetList = () => {
       .orderBy(desc(Budgets.id));
 
     setBudgetList(result);
-    console.log(result);
   };
 
   useEffect(() => {
